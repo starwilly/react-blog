@@ -7,16 +7,23 @@
     "husky": "^0.14.3",
     "lint-staged": "^7.1.2",
     "prettier": "^1.12.1",
+    "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-scripts": "1.1.4"
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.2.0"
   },
   "lint-staged": {
     "src/**/*.{scss,css}": [
       "prettier --config .prettierrc --write",
       "git add"
     ],
-    "src/**/*.{js,jsx,json}": ["eslint --fix", "git add"]
+    "src/**/*.{js,jsx,json}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "scripts": {
     "precommit": "lint-staged",
