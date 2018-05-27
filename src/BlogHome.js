@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+
 import logo from './logo.svg';
 import './App.css';
 import PostList from './post/components/PostList';
 
 /* eslint-disable react/prefer-stateless-function */
-class App extends Component {
+class BlogHome extends Component {
   render() {
     return (
       <div className="App">
@@ -21,4 +22,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default BlogHome;

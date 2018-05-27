@@ -23,3 +23,30 @@ export default function fetchPosts() {
       });
   };
 }
+
+export const FETCH_POST = 'FETCH_POST';
+const receivePost = post => ({
+  type: FETCH_POST,
+  value: post,
+});
+
+export function fetchPost(id) {
+  return dispatch => {
+    db
+      .collection('posts')
+      .doc(id)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          dispatch(receivePost({ id, ...doc.data() }));
+        } else {
+          console.log('not exist...');
+        }
+      });
+  };
+}
+
+export const CLEAR_CURRENT_POST = 'CLEAR_CURRENT_POST';
+export const clearCurrentPostAction = () => ({
+  type: CLEAR_CURRENT_POST,
+});
