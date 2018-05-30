@@ -50,3 +50,9 @@ export const CLEAR_CURRENT_POST = 'CLEAR_CURRENT_POST';
 export const clearCurrentPostAction = () => ({
   type: CLEAR_CURRENT_POST,
 });
+
+export const CREATE_POST = 'CREATE_POST';
+export const createPostAction = post => ({
+  type: CREATE_POST,
+  payload: post,
+});
