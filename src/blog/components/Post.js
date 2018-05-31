@@ -16,11 +16,13 @@ const Post = props => {
   );
 };
 
+export const PostPropType = PropTypes.shape({
+  title: PropTypes.string,
+  text: PropTypes.string,
+});
+
 Post.propTypes = {
-  post: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    text: PropTypes.string,
-  }).isRequired,
+  post: PostPropType.isRequired,
 };
 
 export default Post;

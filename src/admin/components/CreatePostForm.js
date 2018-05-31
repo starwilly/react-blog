@@ -38,7 +38,7 @@ const innerForm = props => {
   );
 };
 
-function PostCreateForm({ onSubmit }) {
+function CreatePostForm({ onSubmit }) {
   return (
     <Formik
       onSubmit={onSubmit}
@@ -50,8 +50,8 @@ function PostCreateForm({ onSubmit }) {
   );
 }
 
-PostCreateForm.propTypes = {
+CreatePostForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default PostCreateForm;
+export default CreatePostForm;
