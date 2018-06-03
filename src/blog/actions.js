@@ -7,20 +7,19 @@ export function clearPostList() {
   };
 }
 
-export const UPDATE_POST_LIST = 'UPDATE_POST_LIST';
-export function updatePostList(postList) {
+export const POST_LIST_LOAD = 'POST_LIST_LOAD';
+export function loadPostList(posts) {
   return {
-    type: UPDATE_POST_LIST,
-    postList,
+    type: POST_LIST_LOAD,
+    payload: posts,
   };
 }
 
 export function fetchPostList() {
-  return dispatch => {
+  return dispatch =>
     api.getPostList().then(posts => {
-      dispatch(updatePostList(posts));
+      dispatch(loadPostList(posts));
     });
-  };
 }
 
 export const UPDATE_CURRENT_POST = 'UPDATE_CURRENT_POST';

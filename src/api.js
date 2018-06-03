@@ -29,3 +29,7 @@ export const getPost = id =>
 
       return transformDoc(doc);
     });
+
+export default {
+  getPost,
+};

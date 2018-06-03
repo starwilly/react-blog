@@ -1,9 +1,9 @@
-import { UPDATE_POST_LIST } from './../actions';
+import { POST_LIST_LOAD } from './../actions';
 
-export default function postListReducer(state = [], { type, postList }) {
+export default function postListReducer(state = [], { type, payload: posts }) {
   switch (type) {
-    case UPDATE_POST_LIST:
-      return postList;
+    case POST_LIST_LOAD:
+      return posts;
     default:
       return state;
   }
