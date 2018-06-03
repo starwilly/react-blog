@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 
 import PropTypes from 'prop-types';
-import Post from './Post';
+import Post from './../Post';
 
 const renderPost = post => <Post post={post} key={post.id} />;
 

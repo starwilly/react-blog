@@ -6,11 +6,13 @@ const Post = props => {
   const { post } = props;
   return (
     <article>
-      <h1>
-        <Link to={`/posts/${post.id}`} href>
-          {post.title}
-        </Link>
-      </h1>
+      <header>
+        <h2>
+          <Link to={`/posts/${post.id}`} href>
+            {post.title}
+          </Link>
+        </h2>
+      </header>
       <div>{post.text}</div>
     </article>
   );

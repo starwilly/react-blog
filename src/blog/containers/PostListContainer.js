@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { PostPropType } from '../components/Post';
+import Post from '../components/Post';
 import PostList from '../components/PostList';
 import { fetchPostList, clearPostList } from '../actions';
 
@@ -31,7 +31,7 @@ class PostListContainer extends Component {
 }
 
 PostListContainer.propTypes = {
-  posts: PropTypes.arrayOf(PostPropType).isRequired,
+  posts: PropTypes.arrayOf(Post.propTypes).isRequired,
   fetchPostList: PropTypes.func.isRequired,
   clearPostList: PropTypes.func.isRequired,
 };

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { PostPropType } from './../components/Post';
+import Post from './../components/Post';
 import { fetchCurrentPost, clearCurrentPost } from './../actions';
 import { ObjectNotExist } from './../../api';
 
@@ -44,7 +44,7 @@ class PostDetailContainer extends Component {
 
 PostDetailContainer.propTypes = {
   postId: PropTypes.string.isRequired,
-  post: PostPropType,
+  post: Post.propTypes,
   fetchCurrentPost: PropTypes.func.isRequired,
   clearCurrentPost: PropTypes.func.isRequired,
 };
