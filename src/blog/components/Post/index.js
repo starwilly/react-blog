@@ -1,1 +1,1 @@
-export { default } from './Post';
+export { default, PostPropType } from './Post';
