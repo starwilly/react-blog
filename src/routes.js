@@ -8,13 +8,15 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import adminRoutes from './admin/routes';
 import BlogRoute from './blog/routes';
 
-export default () => (
-  <BrowserRouter>
-    <Switch>
-      <Route path="/admin" component={adminRoutes} />
-      {/* <Route path="/posts/create" component={CreatePostScreen} /> */}
-      {/* <Route path="/posts/:id" component={PostDetail} /> */}
-      <Route path="/" component={BlogRoute} />
-    </Switch>
-  </BrowserRouter>
-);
+export default function AppRoute() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/admin" component={adminRoutes} />
+        {/* <Route path="/posts/create" component={CreatePostScreen} /> */}
+        {/* <Route path="/posts/:id" component={PostDetail} /> */}
+        <Route path="/" component={BlogRoute} />
+      </Switch>
+    </BrowserRouter>
+  );
+}

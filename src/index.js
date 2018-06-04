@@ -8,11 +8,15 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 import blogReducer from './blog/reducers';
-import AppRoute from './routes';
+import authReducer from './auth/reducers';
+
+// import AppRoute from './routes';
+import App from './App';
 
 // import { firestore as db } from './firebaseInit';
 const rootReducer = combineReducers({
   blog: blogReducer,
+  auth: authReducer,
 });
 
 /* eslint-disable no-underscore-dangle */
@@ -24,17 +28,8 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppRoute />
+    <App />
   </Provider>,
   document.getElementById('root')
 );
 registerServiceWorker();
-
-// db
-//   .collection('posts')
-//   .get()
-//   .then(querySnapshot => {
-//     querySnapshot.forEach(doc => {
-//       console.log('doc', doc.data());
-//     });
-//   });

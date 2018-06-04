@@ -2,12 +2,12 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import { BlogIndexView, PostDetailView } from './views/';
-import SiteHeader from '../common/components/SiteHeader';
+import SiteHeaderContainer from '../common/containers/SiteHeaderContainer';
 
 export default function BlogRoute() {
   return (
     <div>
-      <SiteHeader />
+      <SiteHeaderContainer />
       <Switch>
         <Route path="/posts/:id" component={PostDetailView} />
         <Route path="/" component={BlogIndexView} />

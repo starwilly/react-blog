@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SiteNav from '../components/SiteNav';
+import SiteNav from '../containers/SiteNavContainer';
 import PostListContainer from '../containers/PostListContainer';
 
 function BlogIndexView() {
