@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Avatar, Icon } from 'antd';
 import styled from 'styled-components';
@@ -15,44 +15,51 @@ const StyledAvatar = styled(Avatar)`
   }
 `;
 
-class SiteNav extends Component {
-  genUserAvatar() {
-    const { user } = this.props;
-    return user && user.photoURL ? (
-      <span>
-        <StyledAvatar
-          src={user.photoURL}
-          style={{ marginRight: 0 }}
-          icon="user"
-        />{' '}
-        {user.displayName}
-      </span>
-    ) : (
-      <span>
-        <StyledAvatar icon="user" /> Sign In
-      </span>
-    );
-  }
+const UserAvatar = user =>
+  user.isSignIn && user.photoURL ? (
+    <span>
+      <StyledAvatar
+        src={user.photoURL}
+        style={{ marginRight: 0 }}
+        icon="user"
+      />{' '}
+      {user.displayName}
+    </span>
+  ) : (
+    <span>
+      <StyledAvatar icon="user" /> Sign In
+    </span>
+  );
+
+class SiteNav extends PureComponent {
   render() {
+    const { user, isFirebaseAuthSynced } = this.props;
+    if (!isFirebaseAuthSynced) {
+      return <div className="SiteNav" />;
+    }
     return (
       <div className="SiteNav">
         <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }}>
-          <SubMenu
-            title={this.genUserAvatar()}
-            onTitleClick={this.props.onSignIn}
-          >
-            <Menu.Item key="sign-in" onClick={this.props.onSignIn}>
-              <Icon type="login" /> Sign In
+          {user.isSignIn ? (
+            <SubMenu title={UserAvatar(user)} onTitleClick={this.props.signIn}>
+              <Menu.Item key="admin">
+                <Link href to="/admin/">
+                  <Icon type="appstore" /> Dashboard
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="sign-out" onClick={this.props.signOut}>
+                <Icon type="logout" /> Sign Out
+              </Menu.Item>
+            </SubMenu>
+          ) : (
+            <Menu.Item
+              key="sign-in"
+              selectable={false}
+              onClick={this.props.signIn}
+            >
+              <StyledAvatar icon="user" /> Sign In
             </Menu.Item>
-            <Menu.Item key="sign-out" onClick={this.props.onSignOut}>
-              <Icon type="logout" /> Sign Out
-            </Menu.Item>
-            <Menu.Item key="admin">
-              <Link href to="/admin/">
-                <Icon type="appstore" /> Dashboard
-              </Link>
-            </Menu.Item>
-          </SubMenu>
+          )}
         </Menu>
       </div>
     );
@@ -60,13 +67,14 @@ class SiteNav extends Component {
 }
 
 SiteNav.propTypes = {
-  onSignOut: PropTypes.func.isRequired,
-  onSignIn: PropTypes.func.isRequired,
-  user: userPropType,
+  signOut: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired,
+  user: userPropType.isRequired,
+  isFirebaseAuthSynced: PropTypes.bool.isRequired,
 };
 
-SiteNav.defaultProps = {
-  user: null,
-};
+// SiteNav.defaultProps = {
+//   user: null,
+// };
 
 export default SiteNav;

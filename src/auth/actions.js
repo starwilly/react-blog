@@ -4,7 +4,14 @@ import * as types from './actionTypes';
 export function signInUser(user) {
   return {
     type: types.USER_SIGN_IN,
-    payload: user,
+    user,
+  };
+}
+
+export function syncFirebaseAuth(success) {
+  return {
+    type: types.FEIREBASE_AUTH_SYNC,
+    success,
   };
 }
 

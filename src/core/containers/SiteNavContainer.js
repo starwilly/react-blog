@@ -13,33 +13,37 @@ const {
 class SiteNavContinaer extends Component {
   constructor(props) {
     super(props);
-    this.onSignOut = this.onSignOut.bind(this);
-    this.onSignIn = this.onSignIn.bind(this);
+    this.signOut = this.signOut.bind(this);
+    this.signIn = this.signIn.bind(this);
   }
 
-  onSignOut() {
-    this.props.startSignOutUser();
+  signOut() {
+    this.props.signOut();
   }
 
-  onSignIn() {
-    this.props.startSignInUser();
+  signIn() {
+    this.props.signIn().catch(e => {
+      console.log(e);
+    });
   }
 
   render() {
     return (
       <SiteNav
-        onSignOut={this.onSignOut}
-        onSignIn={this.onSignIn}
         user={this.props.user}
+        signIn={this.signIn}
+        signOut={this.signOut}
+        isFirebaseAuthSynced={this.props.isFirebaseAuthSynced}
       />
     );
   }
 }
 
 SiteNavContinaer.propTypes = {
-  startSignInUser: PropTypes.func.isRequired,
-  startSignOutUser: PropTypes.func.isRequired,
+  signOut: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired,
   user: userPropType,
+  isFirebaseAuthSynced: PropTypes.bool.isRequired,
 };
 
 SiteNavContinaer.defaultProps = {
@@ -48,11 +52,12 @@ SiteNavContinaer.defaultProps = {
 
 const mapStateToProps = state => ({
   user: state.auth.user,
+  isFirebaseAuthSynced: state.auth.isFirebaseAuthSynced,
 });
 
 const mapDispatchToProps = {
-  startSignOutUser,
-  startSignInUser,
+  signOut: startSignOutUser,
+  signIn: startSignInUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SiteNavContinaer);

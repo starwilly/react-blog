@@ -1,2 +1,3 @@
 export const USER_SIGN_IN = 'USER_SIGN_IN';
 export const USER_SIGN_OUT = 'USER_SIGN_OUT';
+export const FEIREBASE_AUTH_SYNC = 'FIREBASE_AUTH_SYNC';
