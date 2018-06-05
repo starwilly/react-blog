@@ -4,8 +4,9 @@ import { Menu, Avatar, Icon } from 'antd';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { userPropType } from '../../auth/constant';
+import auth from '@/auth';
 
+const { userPropType } = auth.models;
 const { SubMenu } = Menu;
 
 const StyledAvatar = styled(Avatar)`

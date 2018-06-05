@@ -13,7 +13,7 @@ module.exports = function override(config, env) {
   // Add alias
   config.resolve.alias = {
     ...config.resolve.alias,
-    '@': path.resolve(__dirname, './src'),
+    '@': path.resolve('src'),
   };
 
   return config;

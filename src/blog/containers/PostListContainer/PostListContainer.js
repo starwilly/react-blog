@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import PostList from './../../components/PostList';
-import { fetchPostList, clearPostList } from './../../actions';
+import PostList from '../../components/PostList';
+import { fetchPostList, clearPostList } from '../../actions';
 import { PostPropType } from '../../components/Post/Post';
 
 class PostListContainer extends Component {

@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { userPropType } from '../../auth';
+import auth from '@/auth';
 import SiteNav from '../components/SiteNav';
-import { startSignOutUser, startSignInUser } from '../../auth/actions';
+
+const {
+  models: { userPropType },
+  actions: { startSignInUser, startSignOutUser },
+} = auth;
 
 class SiteNavContinaer extends Component {
   constructor(props) {

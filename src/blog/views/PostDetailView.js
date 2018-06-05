@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { BaseView } from '@/core/views';
+
 import PostDetailContainer from '../containers/PostDetailContainer';
-import BaseView from '../../common/views/BaseView';
 
 function PostDetailView(props) {
   return (

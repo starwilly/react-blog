@@ -1,18 +1,16 @@
 import { firebase, auth as fireAuth } from '../firebaseInit';
-
-export const USER_SIGN_IN = 'USER_SIGN_IN';
-export const USER_SIGN_OUT = 'USER_SIGN_OUT';
+import * as types from './actionTypes';
 
 export function signInUser(user) {
   return {
-    type: USER_SIGN_IN,
+    type: types.USER_SIGN_IN,
     payload: user,
   };
 }
 
 export function signOutUser() {
   return {
-    type: USER_SIGN_OUT,
+    type: types.USER_SIGN_OUT,
   };
 }
 

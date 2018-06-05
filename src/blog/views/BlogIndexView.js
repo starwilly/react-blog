@@ -1,8 +1,7 @@
 import React from 'react';
 
+import { BaseView } from '@/core/views';
 import PostListContainer from '../containers/PostListContainer';
-
-import BaseView from '../../common/views/BaseView';
 
 function BlogIndexView() {
   return (
