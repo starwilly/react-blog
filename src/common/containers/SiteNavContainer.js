@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { userPropType } from '../../auth';
 import SiteNav from '../components/SiteNav';
 import { startSignOutUser, startSignInUser } from '../../auth/actions';
 
@@ -13,30 +14,41 @@ class SiteNavContinaer extends Component {
   }
 
   onSignOut() {
-    this.props.startSignOutUser().then(() => {
-      console.log('sign out success');
-    });
+    this.props.startSignOutUser();
   }
 
   onSignIn() {
-    this.props.startSignInUser().then(() => {
-      console.log('sign in success');
-    });
+    this.props.startSignInUser();
   }
 
   render() {
-    return <SiteNav onSignOut={this.onSignOut} onSignIn={this.onSignIn} />;
+    return (
+      <SiteNav
+        onSignOut={this.onSignOut}
+        onSignIn={this.onSignIn}
+        user={this.props.user}
+      />
+    );
   }
 }
 
 SiteNavContinaer.propTypes = {
   startSignInUser: PropTypes.func.isRequired,
   startSignOutUser: PropTypes.func.isRequired,
+  user: userPropType,
 };
+
+SiteNavContinaer.defaultProps = {
+  user: null,
+};
+
+const mapStateToProps = state => ({
+  user: state.auth.user,
+});
 
 const mapDispatchToProps = {
   startSignOutUser,
   startSignInUser,
 };
 
-export default connect(null, mapDispatchToProps)(SiteNavContinaer);
+export default connect(mapStateToProps, mapDispatchToProps)(SiteNavContinaer);

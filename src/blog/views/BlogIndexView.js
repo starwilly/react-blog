@@ -1,14 +1,14 @@
 import React from 'react';
 
-import SiteNav from '../containers/SiteNavContainer';
 import PostListContainer from '../containers/PostListContainer';
+
+import BaseView from '../../common/views/BaseView';
 
 function BlogIndexView() {
   return (
-    <div>
-      <SiteNav />
+    <BaseView>
       <PostListContainer />
-    </div>
+    </BaseView>
   );
 }
 
