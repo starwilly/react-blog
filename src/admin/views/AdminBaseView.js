@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Layout, Menu, Icon } from 'antd';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { SiteHeaderContainer } from '@/core/containers';
 
 const { Content, Sider } = Layout;
@@ -32,8 +32,10 @@ class AdminBaseView extends Component {
             <div className="logo" />
             <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1">
-                <Icon type="pie-chart" />
-                <span>Option 1</span>
+                <Link to={`${this.props.match.url}/posts/create`} href>
+                  <Icon type="pie-chart" />
+                  Create Post
+                </Link>
               </Menu.Item>
               <Menu.Item key="2">
                 <Icon type="desktop" />
@@ -79,6 +81,9 @@ class AdminBaseView extends Component {
 
 AdminBaseView.propTypes = {
   children: PropTypes.node,
+  match: PropTypes.shape({
+    url: PropTypes.string,
+  }).isRequired,
 };
 
 AdminBaseView.defaultProps = {

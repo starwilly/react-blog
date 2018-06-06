@@ -1,6 +1,7 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { PrivateRoute } from '@/auth/utils';
 
 import CreatePostView from './views/CreatePostView';
 import AdminIndexView from './views/AdminIndexView';
@@ -9,8 +10,11 @@ export default function adminRoutes({ match }) {
   return (
     <div>
       <Switch>
-        <Route path={`${match.url}/posts/create`} component={CreatePostView} />
-        <Route path={`${match.url}`} component={AdminIndexView} />
+        <PrivateRoute
+          path={`${match.url}/posts/create`}
+          component={CreatePostView}
+        />
+        <PrivateRoute path={`${match.url}`} component={AdminIndexView} />
       </Switch>
     </div>
   );
