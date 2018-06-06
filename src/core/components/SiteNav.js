@@ -49,7 +49,7 @@ const SiteNav = ({ user, signIn, signOut, isBrowsingAdmin }) => (
       >
         {user.isSignIn && !isBrowsingAdmin ? (
           <Menu.Item key="admin">
-            <Link href to="/admin/">
+            <Link href to="/admin">
               <Icon type="appstore" /> Dashboard
             </Link>
           </Menu.Item>

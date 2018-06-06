@@ -32,7 +32,7 @@ class AdminBaseView extends Component {
             <div className="logo" />
             <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1">
-                <Link to={`${this.props.match.url}/posts/create`} href>
+                <Link to="/admin/posts/create" href>
                   <Icon type="pie-chart" />
                   Create Post
                 </Link>
@@ -81,9 +81,9 @@ class AdminBaseView extends Component {
 
 AdminBaseView.propTypes = {
   children: PropTypes.node,
-  match: PropTypes.shape({
-    url: PropTypes.string,
-  }).isRequired,
+  // match: PropTypes.shape({
+  //   url: PropTypes.string,
+  // }).isRequired,
 };
 
 AdminBaseView.defaultProps = {

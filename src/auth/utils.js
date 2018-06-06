@@ -35,11 +35,13 @@ const mapStateToProps = state => ({
 PrivateRouteInner.propTypes = {
   component: PropTypes.object,
   location: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  isAuthSynced: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool,
+  isAuthSynced: PropTypes.bool,
 };
 PrivateRouteInner.defaultProps = {
   component: null,
+  isAuthSynced: null,
+  isAuthenticated: null,
 };
 
 export const PrivateRoute = connect(mapStateToProps)(PrivateRouteInner);

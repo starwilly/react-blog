@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Redirect, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { PrivateRoute } from '@/auth/utils';
 
@@ -11,10 +11,12 @@ export default function adminRoutes({ match }) {
     <div>
       <Switch>
         <PrivateRoute
+          exact
           path={`${match.url}/posts/create`}
           component={CreatePostView}
         />
-        <PrivateRoute path={`${match.url}`} component={AdminIndexView} />
+        <PrivateRoute exact path={`${match.url}`} component={AdminIndexView} />
+        <Route path={`${match.url}`} render={() => <Redirect to="/admin" />} />
       </Switch>
     </div>
   );
