@@ -1,13 +1,14 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Menu, Avatar, Icon } from 'antd';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 import auth from '@/auth';
 
-const { userPropType } = auth.models;
 const { SubMenu } = Menu;
+
+const { userPropType } = auth.models;
 
 const StyledAvatar = styled(Avatar)`
   > .anticon {
@@ -16,65 +17,65 @@ const StyledAvatar = styled(Avatar)`
 `;
 
 const UserAvatar = user =>
-  user.isSignIn && user.photoURL ? (
+  user.photoURL ? (
     <span>
       <StyledAvatar
         src={user.photoURL}
         style={{ marginRight: 0 }}
         icon="user"
-      />{' '}
-      {user.displayName}
+      />
     </span>
   ) : (
     <span>
-      <StyledAvatar icon="user" /> Sign In
+      <StyledAvatar icon="user" />
     </span>
   );
 
-class SiteNav extends PureComponent {
-  render() {
-    const { user, isFirebaseAuthSynced } = this.props;
-    if (!isFirebaseAuthSynced) {
-      return <div className="SiteNav" />;
-    }
-    return (
-      <div className="SiteNav">
-        <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }}>
-          {user.isSignIn ? (
-            <SubMenu title={UserAvatar(user)} onTitleClick={this.props.signIn}>
-              <Menu.Item key="admin">
-                <Link href to="/admin/">
-                  <Icon type="appstore" /> Dashboard
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="sign-out" onClick={this.props.signOut}>
-                <Icon type="logout" /> Sign Out
-              </Menu.Item>
-            </SubMenu>
-          ) : (
-            <Menu.Item
-              key="sign-in"
-              selectable={false}
-              onClick={this.props.signIn}
-            >
-              <StyledAvatar icon="user" /> Sign In
-            </Menu.Item>
-          )}
-        </Menu>
-      </div>
-    );
-  }
-}
+const SiteNav = ({ user, signIn, signOut, isBrowsingAdmin }) => (
+  <div className="SiteNav">
+    <Menu
+      theme="dark"
+      mode="horizontal"
+      selectable={false}
+      style={{ lineHeight: '64px' }}
+    >
+      <SubMenu
+        title={
+          <span>
+            {UserAvatar(user)} {user.isSignIn ? user.displayName : 'Sign In'}
+          </span>
+        }
+        onTitleClick={signIn}
+      >
+        {user.isSignIn && !isBrowsingAdmin ? (
+          <Menu.Item key="admin">
+            <Link href to="/admin/">
+              <Icon type="appstore" /> Dashboard
+            </Link>
+          </Menu.Item>
+        ) : null}
+        {user.isSignIn && isBrowsingAdmin ? (
+          <Menu.Item key="blog">
+            <Link href to="/">
+              <Icon type="home" /> Blog
+            </Link>
+          </Menu.Item>
+        ) : null}
+        {user.isSignIn ? (
+          <Menu.Item key="sign-out" onClick={signOut}>
+            <Icon type="logout" /> Sign Out
+          </Menu.Item>
+        ) : null}
+      </SubMenu>
+    </Menu>
+  </div>
+);
 
 SiteNav.propTypes = {
-  signOut: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
+  signOut: PropTypes.func.isRequired,
   user: userPropType.isRequired,
-  isFirebaseAuthSynced: PropTypes.bool.isRequired,
+  isBrowsingAdmin: PropTypes.bool.isRequired,
 };
-
-// SiteNav.defaultProps = {
-//   user: null,
-// };
 
 export default SiteNav;

@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import auth from '@/auth';
-import SiteNav from '../components/SiteNav';
+import SiteHeader from '../components/SiteHeader';
 
 const {
   models: { userPropType },
   actions: { startSignInUser, startSignOutUser },
 } = auth;
 
-class SiteNavContinaer extends Component {
+class SiteHeaderContainer extends Component {
   constructor(props) {
     super(props);
     this.signOut = this.signOut.bind(this);
@@ -22,31 +22,25 @@ class SiteNavContinaer extends Component {
   }
 
   signIn() {
-    this.props.signIn().catch(e => {
-      console.log(e);
-    });
+    this.props.signIn();
   }
 
   render() {
     return (
-      <SiteNav
-        user={this.props.user}
-        signIn={this.signIn}
-        signOut={this.signOut}
-        isFirebaseAuthSynced={this.props.isFirebaseAuthSynced}
-      />
+      <SiteHeader {...this.props} signIn={this.signIn} signOut={this.signOut} />
     );
   }
 }
 
-SiteNavContinaer.propTypes = {
+SiteHeaderContainer.propTypes = {
   signOut: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
   user: userPropType,
   isFirebaseAuthSynced: PropTypes.bool.isRequired,
+  isBrowsingAdmin: PropTypes.bool.isRequired,
 };
 
-SiteNavContinaer.defaultProps = {
+SiteHeaderContainer.defaultProps = {
   user: null,
 };
 
@@ -60,4 +54,6 @@ const mapDispatchToProps = {
   signIn: startSignInUser,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SiteNavContinaer);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  SiteHeaderContainer
+);

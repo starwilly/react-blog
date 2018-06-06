@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
 
 import auth from '@/auth';
@@ -10,10 +11,8 @@ import blog from '@/blog';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-// import AppRoute from './routes';
 import App from './App';
 
-// import { firestore as db } from './firebaseInit';
 const rootReducer = combineReducers({
   blog: blog.reducer,
   auth: auth.reducer,
@@ -25,10 +24,14 @@ const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(thunk))
 );
+// const browserHistory = createHistory();
+// const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

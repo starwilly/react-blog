@@ -1,3 +1,7 @@
-/* eslint-disable import/prefer-default-export */
-export { default as AdminIndexView } from './AdminIndexView';
-export { default as CreatePostView } from './CreatePostView';
+/* eslint-disable import/no-named-default */
+
+import { default as AdminBaseView } from './AdminBaseView';
+import { default as AdminIndexView } from './AdminIndexView';
+import { default as CreatePostView } from './CreatePostView';
+
+export default { AdminBaseView, AdminIndexView, CreatePostView };

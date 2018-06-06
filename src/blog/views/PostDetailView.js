@@ -5,10 +5,11 @@ import { BaseView } from '@/core/views';
 
 import PostDetailContainer from '../containers/PostDetailContainer';
 
-function PostDetailView(props) {
+function PostDetailView({ match }) {
+  const postId = match.params.id;
   return (
     <BaseView>
-      <PostDetailContainer postId={props.match.params.id} />
+      <PostDetailContainer postId={postId} />
     </BaseView>
   );
 }

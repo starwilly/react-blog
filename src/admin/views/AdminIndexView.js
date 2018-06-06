@@ -1,7 +1,9 @@
 import React from 'react';
 
+import AdminBaseView from './AdminBaseView';
+
 function AdminIndexView() {
-  return <div>This is Admin Index</div>;
+  return <AdminBaseView>This is Admin Index</AdminBaseView>;
 }
 
 export default AdminIndexView;

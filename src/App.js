@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withRouter, Switch, Route } from 'react-router-dom';
 
 import auth from '@/auth';
-import AppRoute from './routes';
+import adminRoutes from './admin/routes';
+import blogRoutes from './blog/routes';
 import { auth as fireAuth } from './firebaseInit';
 
 const { syncFirebaseAuth, signInUser, signOutUser } = auth.actions;
@@ -21,7 +23,14 @@ class App extends Component {
     });
   }
   render() {
-    return <AppRoute />;
+    return (
+      <div>
+        <Switch>
+          <Route path="/admin" component={adminRoutes} />
+          <Route path="/" component={blogRoutes} />
+        </Switch>
+      </div>
+    );
   }
 }
 
@@ -37,4 +46,4 @@ const mapDispatchToProps = {
   syncFirebaseAuth,
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default withRouter(connect(null, mapDispatchToProps)(App));

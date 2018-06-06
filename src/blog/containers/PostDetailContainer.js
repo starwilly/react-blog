@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { PostPropType } from '../components/Post';
 import { fetchCurrentPost, clearCurrentPost } from './../actions';

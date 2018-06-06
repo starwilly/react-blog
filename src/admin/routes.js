@@ -2,13 +2,12 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import AdminNav from './components/AdminNav';
-import { AdminIndexView, CreatePostView } from './views';
+import CreatePostView from './views/CreatePostView';
+import AdminIndexView from './views/AdminIndexView';
 
 export default function adminRoutes({ match }) {
   return (
     <div>
-      <AdminNav />
       <Switch>
         <Route path={`${match.url}/posts/create`} component={CreatePostView} />
         <Route path={`${match.url}`} component={AdminIndexView} />
