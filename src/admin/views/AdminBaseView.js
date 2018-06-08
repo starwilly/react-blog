@@ -32,9 +32,9 @@ class AdminBaseView extends Component {
             <div className="logo" />
             <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1">
-                <Link to="/admin/posts/create" href>
+                <Link to="/admin/posts" href>
                   <Icon type="pie-chart" />
-                  Create Post
+                  Blog Post
                 </Link>
               </Menu.Item>
               <Menu.Item key="2">
@@ -72,7 +72,15 @@ class AdminBaseView extends Component {
               </Menu.Item>
             </Menu>
           </Sider>
-          <Content style={{ margin: '0 16px' }}>{this.props.children}</Content>
+          <Content
+            style={{
+              margin: '8px 16px',
+              padding: '16px',
+              backgroundColor: 'white',
+            }}
+          >
+            {this.props.children}
+          </Content>
         </Layout>
       </Layout>
     );

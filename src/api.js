@@ -1,4 +1,4 @@
-import { firestore as db } from './firebaseInit';
+import { firestore as db, firebase } from './firebaseInit';
 
 /* eslint-disable import/prefer-default-export */
 
@@ -14,9 +14,33 @@ ObjectNotExist.prototype.name = 'ObjectNotExist';
 const postRef = db.collection('posts');
 const transformDoc = doc => ({ id: doc.id, ...doc.data() });
 
-export const createPost = post => postRef.add(post);
-export const getPostList = () =>
-  postRef.get().then(querySnapshot => querySnapshot.docs.map(transformDoc));
+export const createPost = post => {
+  const p = {
+    ...post,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+  };
+  postRef.add(p);
+};
+
+export const getPostList = ({
+  limit = 20,
+  orderBy = 'title',
+  startAfter = null,
+  endBefore = null,
+} = {}) => {
+  let query = postRef.orderBy(orderBy).limit(limit);
+  query = startAfter ? query.startAfter(startAfter) : query;
+  query = endBefore ? query.endBefore(endBefore) : query;
+  query = query.get().then(querySnapshot => {
+    const posts = querySnapshot.docs.map(transformDoc);
+    const firstVisible = querySnapshot.empty ? null : querySnapshot.docs[0];
+    const lastVisible = querySnapshot.empty
+      ? null
+      : querySnapshot.docs[querySnapshot.docs.length - 1];
+    return { data: posts, meta: { lastVisible, firstVisible } };
+  });
+  return query;
+};
 
 export const getPost = id =>
   postRef

@@ -17,8 +17,8 @@ export function loadPostList(posts) {
 
 export function fetchPostList() {
   return dispatch =>
-    api.getPostList().then(posts => {
-      dispatch(loadPostList(posts));
+    api.getPostList().then(resp => {
+      dispatch(loadPostList(resp.data));
     });
 }
 
