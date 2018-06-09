@@ -3,9 +3,9 @@ import { Switch, Redirect, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { PrivateRoute } from '@/auth/utils';
 
-import authViews from './views';
+import adminView from './views';
 
-const { PostListView, AdminIndexView, CreatePostView } = authViews;
+const { PostAdminView, AdminIndexView, CreatePostView } = adminView;
 
 export default function adminRoutes({ match }) {
   return (
@@ -16,7 +16,7 @@ export default function adminRoutes({ match }) {
           path={`${match.url}/posts/create`}
           component={CreatePostView}
         />
-        <PrivateRoute path={`${match.url}/posts`} component={PostListView} />
+        <PrivateRoute path={`${match.url}/posts`} component={PostAdminView} />
         <PrivateRoute exact path={`${match.url}`} component={AdminIndexView} />
         <Route path={`${match.url}`} render={() => <Redirect to="/admin" />} />
       </Switch>

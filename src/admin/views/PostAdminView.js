@@ -2,7 +2,7 @@ import React from 'react';
 import { Breadcrumb, Row, Col, Button } from 'antd';
 
 import AdminBaseView from './AdminBaseView';
-import PostList from '../components/PostList';
+import PostTable from '../components/PostTable';
 
 const PostListView = () => (
   <AdminBaseView>
@@ -19,7 +19,7 @@ const PostListView = () => (
       </Button>
     </Row>
     <Row style={{ marginTop: '8px' }}>
-      <PostList />
+      <PostTable />
     </Row>
   </AdminBaseView>
 );

@@ -33,7 +33,7 @@ const mapStateToProps = state => ({
 
 /* eslint-disable react/forbid-prop-types */
 PrivateRouteInner.propTypes = {
-  component: PropTypes.object,
+  component: PropTypes.func,
   location: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool,
   isAuthSynced: PropTypes.bool,
